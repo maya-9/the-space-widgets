@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Intake</title>
+<style>
+  :root {
+    --bg: #FDF5EC; --text: #1E404F; --sub: #34685C;
+    --bar-bg: rgba(30,64,79,0.1); --bar-fill: #34685C;
+    --off-filter: grayscale(0.3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1E404F; --text: #E9BD96; --sub: #34685C;
+      --bar-bg: rgba(233,189,150,0.1); --bar-fill: #ED9530;
+      --off-filter: grayscale(0.6);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); padding: 14px; }
+  .title { font-size: 11px; font-weight: 500; color: var(--sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .drops { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .drop { width: 32px; height: 38px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; border-radius: 4px; transition: opacity 0.2s, transform 0.15s; }
+  .drop.on { opacity: 1; }
+  .drop.off { opacity: 0.2; filter: var(--off-filter); }
+  .drop:hover { transform: scale(1.15); }
+  .summary { font-size: 12px; color: var(--text); }
+  .summary b { color: var(--sub); }
+  .bar-wrap { height: 5px; background: var(--bar-bg); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--bar-fill); border-radius: 3px; transition: width 0.4s ease; }
+  .tap-hint { font-size: 10px; color: var(--sub); opacity: 0.5; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="title">💧 Water intake</div>
+  <div class="drops" id="drops"></div>
+  <div class="bar-wrap"><div class="bar-fill" id="bar"></div></div>
+  <div class="summary" id="summary"></div>
+  <div class="tap-hint">tap a drop to log</div>
+  <script>
+    const GOAL = 8;
+    let count = parseInt(localStorage.getItem('water_count') || '5');
+    const dropsEl = document.getElementById('drops');
+    const barEl = document.getElementById('bar');
+    const summaryEl = document.getElementById('summary');
+    function render() {
+      dropsEl.innerHTML = '';
+      for (let i = 0; i < GOAL; i++) {
+        const d = document.createElement('div');
+        d.className = 'drop ' + (i < count ? 'on' : 'off');
+        d.textContent = '💧';
+        d.onclick = () => { count = (i < count) ? i : i + 1; localStorage.setItem('water_count', count); render(); };
+        dropsEl.appendChild(d);
+      }
+      barEl.style.width = Math.round((count / GOAL) * 100) + '%';
+      summaryEl.innerHTML = `<b>${count}</b> of <b>${GOAL}</b> cups today`;
+    }
+    render();
+  </script>
+</body>
+</html>
