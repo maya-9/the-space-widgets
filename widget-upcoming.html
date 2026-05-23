@@ -1,61 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upcoming</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Upcoming</title>
 <style>
-  :root {
-    --bg: #FDF5EC; --text: #1E404F; --sub: #34685C;
-    --border: rgba(30,64,79,0.1);
-    --badge-bg: rgba(52,104,92,0.1); --badge-c: #34685C;
-    --today-bg: rgba(204,33,50,0.1); --today-c: #CC2132;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1E404F; --text: #E9BD96; --sub: #34685C;
-      --border: rgba(233,189,150,0.12);
-      --badge-bg: rgba(52,104,92,0.25); --badge-c: #5DCAA5;
-      --today-bg: rgba(204,33,50,0.25); --today-c: #F09595;
-    }
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); padding: 14px; font-size: 13px; }
-  .title { font-size: 11px; font-weight: 500; color: var(--sub); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-  .event-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid var(--border); }
-  .event-row:last-child { border-bottom: none; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .event-info { flex: 1; }
-  .event-text { color: var(--text); font-size: 12px; }
-  .event-cat { font-size: 10px; color: var(--sub); margin-top: 1px; }
-  .day-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: var(--badge-bg); color: var(--badge-c); flex-shrink: 0; }
-  .day-badge.today { background: var(--today-bg); color: var(--today-c); font-weight: 500; }
-</style>
-</head>
-<body>
-  <div class="title">📅 Upcoming</div>
-  <div id="events"></div>
-  <script>
-    const events = [
-      { text:"Essay — Eng 301",      cat:"Academic", day:"Today", color:"#CC2132", today:true  },
-      { text:"Math 240 problem set",  cat:"Academic", day:"Mon",   color:"#E6692A", today:false },
-      { text:"Org staff meeting",     cat:"Org",      day:"Tue",   color:"#34685C", today:false },
-      { text:"Hist 210 reading",      cat:"Academic", day:"Wed",   color:"#988A20", today:false },
-      { text:"Sci 110 lab report",    cat:"Academic", day:"Thu",   color:"#988A20", today:false },
-      { text:"Laundry",               cat:"Chores",   day:"Sat",   color:"#E9BD96", today:false },
-    ];
-    const el = document.getElementById('events');
-    events.forEach(e => {
-      el.innerHTML += `
-        <div class="event-row">
-          <div class="dot" style="background:${e.color}"></div>
-          <div class="event-info">
-            <div class="event-text">${e.text}</div>
-            <div class="event-cat">${e.cat}</div>
-          </div>
-          <div class="day-badge${e.today?' today':''}">${e.day}</div>
-        </div>`;
-    });
-  </script>
-</body>
-</html>
+:root{--bg:#FDF5EC;--text:#1E404F;--sub:#34685C;--border:rgba(30,64,79,0.1);--badge-bg:rgba(52,104,92,0.1);--badge-c:#34685C;--today-bg:rgba(204,33,50,0.1);--today-c:#CC2132}
+@media(prefers-color-scheme:dark){:root{--bg:#1E404F;--text:#E9BD96;--sub:#34685C;--border:rgba(233,189,150,0.12);--badge-bg:rgba(52,104,92,0.25);--badge-c:#5DCAA5;--today-bg:rgba(204,33,50,0.25);--today-c:#F09595}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);padding:14px;font-size:13px}
+.title{font-size:11px;font-weight:500;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.event-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--border)}
+.event-row:last-child{border-bottom:none}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.event-info{flex:1}
+.event-text{color:var(--text);font-size:12px}
+.event-cat{font-size:10px;color:var(--sub);margin-top:1px}
+.day-badge{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--badge-bg);color:var(--badge-c);flex-shrink:0}
+.day-badge.today{background:var(--today-bg);color:var(--today-c);font-weight:500}
+.updated{font-size:10px;color:var(--sub);opacity:0.5;margin-top:10px;text-align:right}
+</style></head><body>
+<div class="title">📅 Upcoming</div>
+
+<div class="updated">Updated May 23, 10:40 AM</div>
+</body></html>
